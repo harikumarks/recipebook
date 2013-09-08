@@ -1,0 +1,33 @@
+<%= form_for(@prestep) do |f| %>
+  <% if @prestep.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@prestep.errors.count, "error") %> prohibited this prestep from being saved:</h2>
+
+      <ul>
+      <% @prestep.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sequence %><br />
+    <%= f.number_field :sequence %>
+  </div>
+  <div class="field">
+    <%= f.label :activity %><br />
+    <%= f.text_field :activity %>
+  </div>
+  <div class="field">
+    <%= f.label :time %><br />
+    <%= f.number_field :time %>
+  </div>
+  <div class="field">
+    <%= f.label :recipe_id %><br />
+    <%= f.number_field :recipe_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

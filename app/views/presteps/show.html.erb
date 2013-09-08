@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Sequence:</b>
+  <%= @prestep.sequence %>
+</p>
+
+<p>
+  <b>Activity:</b>
+  <%= @prestep.activity %>
+</p>
+
+<p>
+  <b>Time:</b>
+  <%= @prestep.time %>
+</p>
+
+<p>
+  <b>Recipe:</b>
+  <%= @prestep.recipe_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_prestep_path(@prestep) %> |
+<%= link_to 'Back', presteps_path %>

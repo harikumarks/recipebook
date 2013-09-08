@@ -1,0 +1,29 @@
+<h1>Listing presteps</h1>
+
+<table>
+  <tr>
+    <th>Sequence</th>
+    <th>Activity</th>
+    <th>Time</th>
+    <th>Recipe</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @presteps.each do |prestep| %>
+  <tr>
+    <td><%= prestep.sequence %></td>
+    <td><%= prestep.activity %></td>
+    <td><%= prestep.time %></td>
+    <td><%= prestep.recipe_id %></td>
+    <td><%= link_to 'Show', prestep %></td>
+    <td><%= link_to 'Edit', edit_prestep_path(prestep) %></td>
+    <td><%= link_to 'Destroy', prestep, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Prestep', new_prestep_path %>
