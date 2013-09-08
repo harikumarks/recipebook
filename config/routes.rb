@@ -1,7 +1,11 @@
 Recipebook::Application.routes.draw do
-  get "static_pages/home"
 
-  get "static_pages/login"
+
+  #get "static_pages/login"
+  match '/login', to: 'static_pages#login'
+  match '/home' , to: 'static_pages#home'
+  match '/register' , to: 'static_pages#register'
+  match '/' , to: 'static_pages#home'
 
   resources :ingredients
 
