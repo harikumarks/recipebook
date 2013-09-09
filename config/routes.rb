@@ -1,11 +1,13 @@
 Recipebook::Application.routes.draw do
 
 
+
   #get "static_pages/login"
   match '/login', to: 'static_pages#login'
   match '/home' , to: 'static_pages#home'
-  match '/register' , to: 'static_pages#register'
-  match '/' , to: 'static_pages#home'
+  match '/signup' , to: 'users#new'
+  match '/allrecipes' , to: 'static_pages#allrecipes'
+  #match '/' , to: 'static_pages#home'
 
   resources :ingredients
 
@@ -77,7 +79,7 @@ Recipebook::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'users#new'
 
   # See how all your routes lay out with "rake routes"
 

@@ -1,5 +1,30 @@
-<h1>New recipe</h1>
+<% provide(:title, 'Add Recipe') %>
+<h3>New recipe</h3>
+ <%= render 'layouts/userheader' %>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@recipe) do |f| %>
 
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+ 
+      <%= f.label :Serves %>
+      <%= f.number_field :quantity %>
+
+      <% categories=RecipeCategory.all %>
+       <%= f.label :Category %>
+      <%= f.select(:recipe_category_id, categories.map { |value| [ value.name, value.id ] })%>
+
+       <%= f.hidden_field :user_id , :value => params[:user_id] %>
+
+       <br/>       
+
+      <%= f.submit "Create recipe" %>
+    <% end %>
+  </div>
+</div>
 <%= link_to 'Back', recipes_path %>

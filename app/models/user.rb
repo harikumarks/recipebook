@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { maximum: 15 , minimum: 6}
   validates :password_confirmation, presence: true
   before_save { |user|  user.email = email.downcase }
+  has_many :recipes
 end

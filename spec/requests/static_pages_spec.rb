@@ -23,15 +23,4 @@ describe "StaticPages" do
     end
   end
 
-   describe "Register page" do
-    it "should have content Register" do
-      visit '/register'
-      expect(page).to have_content('Register')
-    end
-    it "should have title Home Recipe Book -> Register" do
-      visit '/register'
-      expect(page).to have_title('Home Recipe Book -> Register')
-    end
-  end
-
 end
