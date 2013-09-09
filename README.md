@@ -3,7 +3,7 @@
 # Completed
 - Initial models using scaffold and migration and tests for them
 - Signup page
-- Test pages for recipe add
+- Trial pages for recipe add
 
 # To be done along with tests
 - Relationships to be completed for all models
