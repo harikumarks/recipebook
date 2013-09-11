@@ -1,15 +1,12 @@
 require 'spec_helper'
 
 describe Recipe do
-    #before { @recipe= Recipe.new(name: "Chicken Masala" , description: "A spicy chicken dish", quantity: 4 , recipe_category_id: 1 , user_id: 1) }
-    #subject { @recipe }
-    #it { should respond_to(:name) }
 
-    #it { should be_valid }
     before do
-    @user =User.new(name: "test",email: "asd@asd.com" , password: "asdasd" , password_confirmation: "asdasd")
-    @category = RecipeCategory.new(name: "Dinner")
-    @recipe = Recipe.new(name: "Chicken Masala" , description: "A spicy chicken dish", quantity: 4 , recipe_category_id: 1 , user_id: 1)
+      @userid=1
+      @category = RecipeCategory.new(name: "Dinner")
+      @recipe = Recipe.new(name: "Chicken Masala" ,
+                           description: "A spicy chicken dish", quantity: 4 , recipe_category_id: 1 , user_id: @userid)
     end
     subject do
       @recipe
@@ -25,19 +22,29 @@ describe Recipe do
     end
 
 
-  describe "when category is not present" do
-    before {@recipe.recipe_category_id = NIL }
+  describe "when recipe name is too long"
+    before { @recipe.name="a"*51}
+    it {should_not be_valid}
+
+    describe "when name is not present" do
+      before {@recipe.name ="" }
+      it { should_not be_valid }
+    end
+
+
+    describe "when category is not present" do
+    before {@recipe.recipe_category_id = "" }
     it { should_not be_valid }
   end
 
   describe "when quantity is not present" do
-    before {@recipe.quantity = NIL}
+    before {@recipe.quantity = 0}
     it { should_not be_valid }
   end
 
 
   describe "when not associated with user" do
-    before {@recipe.user_id= NIL}
+    before {@recipe.user_id= 0}
     it { should_not be_valid }
   end
 end

@@ -4,26 +4,28 @@
 <div class="container">
   <div class="row">
     <%= render 'layouts/userleftnav' %>
-    <div class="span5">
+    <div class="span8">
 
       <b> Recipes </b></br>
-      <table class="table">
+      <table class="table table-striped"  >
         <thead>
         <tr>
           <th>Name</th>
           <th>Serves</th>
           <th>Time</th>
+          <th></th>
+          <th></th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
         <% @recipes.each do |rp| %>
             <tr>
-            <td><%=  rp.name  %></tr>
+            <td style="overflow: hidden"><%=  rp.name  %></td>
             <td><%= rp.quantity.to_s %></td>
             <% preptime=rp.presteps.pluck(:time).sum %>
             <% steptime=rp.steps.pluck(:time).sum %>
             <td><%= preptime+steptime %></td>
-            <td><%= rp.recipe_category_id %></td>
             <td><%= link_to 'Show', rp %></td>
             <td><%= link_to 'Edit', edit_recipe_path(rp) %></td>
             <td><%= link_to 'Destroy', rp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -32,7 +34,7 @@
         </tbody>
       </table>
 
-      <%= link_to  "Add new", new_recipe_path(:user_id => "#{@user.id}")  %>
+      <%= link_to  "Add new", new_recipe_path  %>
 
     </div>
   </div>

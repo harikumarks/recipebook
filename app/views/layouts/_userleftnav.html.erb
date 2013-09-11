@@ -4,7 +4,12 @@
       <% current_controller = params[:controller] %>
       <% controllers= ["recipe_categories","recipes","ingredients"]%>
       <% controllers.each do |controller| %>
-          <li>
+          <% if current_controller==controller %>
+            <li  class="active">
+            <% else %>
+              <li>
+           <%end%>
+
             <%= link_to controller.humanize, { :controller => controller } %>
           </li>
       <% end %>

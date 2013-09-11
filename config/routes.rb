@@ -2,9 +2,8 @@ Recipebook::Application.routes.draw do
 
 
 
-  #get "static_pages/login"
-  match '/login', to: 'static_pages#login'
-  match '/home' , to: 'static_pages#home'
+  devise_for :users
+
   match '/signup' , to: 'users#new'
   match '/allrecipes' , to: 'static_pages#allrecipes'
   #match '/' , to: 'static_pages#home'
@@ -25,9 +24,6 @@ Recipebook::Application.routes.draw do
 
 
   resources :recipe_categories
-
-
-  resources :users
 
 
   # The priority is based upon order of creation:
@@ -79,7 +75,7 @@ Recipebook::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'users#new'
+  root :to => 'recipes#index'
 
   # See how all your routes lay out with "rake routes"
 

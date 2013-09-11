@@ -1,21 +1,15 @@
 class RecipesController < ApplicationController
-  # GET /recipes
-  # GET /recipes.json
+  before_filter :authenticate_user!
   def index
-    @recipes = Recipe.where(:user_id => params[:user_id])
-    @user=User.find(params[:user_id])
-
-    respond_to do |format|
+    @recipes = Recipe.where(:user_id => current_user.id )
+     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @recipes }
     end
   end
 
-  # GET /recipes/1
-  # GET /recipes/1.json
   def show
     @recipe = Recipe.find(params[:id])
-    @user=User.find(params[:user_id])
     @presteps=@recipe.presteps
     @steps=@recipe.steps
 
@@ -30,7 +24,6 @@ class RecipesController < ApplicationController
   # GET /recipes/new.json
   def new
     @recipe = Recipe.new
-    @user=User.find(params[:user_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,14 +34,13 @@ class RecipesController < ApplicationController
   # GET /recipes/1/edit
   def edit
     @recipe = Recipe.find(params[:id])
-    @user=User.find(params[:user_id])
   end
 
   # POST /recipes
   # POST /recipes.json
   def create
     @recipe = Recipe.new(params[:recipe])
-    @user=User.find(params[:user_id])
+
 
     respond_to do |format|
       if @recipe.save
@@ -65,7 +57,7 @@ class RecipesController < ApplicationController
   # PUT /recipes/1.json
   def update
     @recipe = Recipe.find(params[:id])
-    @user=User.find(params[:user_id])
+
 
     respond_to do |format|
       if @recipe.update_attributes(params[:recipe])

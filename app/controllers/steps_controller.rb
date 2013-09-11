@@ -1,4 +1,5 @@
 class StepsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /steps
   # GET /steps.json
   def index

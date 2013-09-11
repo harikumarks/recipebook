@@ -1,4 +1,17 @@
+<div class="navbar navbar-fixed-top nav-bar-inverse">
 
-<h3> Home Recipe Book:       </h3>
-<%= link_to "Profile", "#" %>  <%= link_to "Sign out", "#" %>
+  <div class="navbar-inner">
+
+        <div class="container">
+          <b>Home Recipe Book</b>
+           <nav>
+            <div class="nav pull-right">
+             <%= current_user.email %>
+            <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>  </div>
+
+            </nav>
+        </div>
+  </div>
+
+
 </div>

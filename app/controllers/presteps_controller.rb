@@ -1,4 +1,5 @@
 class PrestepsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /presteps
   # GET /presteps.json
   def index
