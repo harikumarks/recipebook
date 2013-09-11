@@ -1,29 +1,34 @@
 <% provide(:title, 'Add Recipe') %>
  <%= render 'layouts/userheader' %>
+ <div class="container">
+  <div class="row">
+    <%= render 'layouts/userleftnav' %>
+    <div class="span5">
 
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@recipe) do |f| %>
+      <%= form_for(@recipe) do |f| %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
 
-      <%= f.label :description %>
-      <%= f.text_field :description %>
- 
-      <%= f.label :Serves %>
-      <%= f.number_field :quantity %>
+          <%= f.label :description %>
+          <%= f.text_field :description %>
 
-      <% categories=RecipeCategory.all %>
-       <%= f.label :Category %>
-      <%= f.select(:recipe_category_id, categories.map { |value| [ value.name, value.id ] })%>
+          <%= f.label :Serves %>
+          <%= f.number_field :quantity %>
 
-       <%= f.hidden_field :user_id , :value => params[:user_id] %>
+          <% categories=RecipeCategory.all %>
+          <%= f.label :Category %>
+          <%= f.select(:recipe_category_id, categories.map { |value| [ value.name, value.id ] })%>
 
-       <br/>       
+          <%= f.hidden_field :user_id , :value => params[:user_id] %>
 
-      <%= f.submit "Create recipe" %>
-    <% end %>
+          <br/>
+
+          <%= f.submit "Create recipe" %>
+      <% end %>
+      <%= link_to 'Back', recipes_path %>
+
+    </div>
   </div>
 </div>
-<%= link_to 'Back', recipes_path %>
+

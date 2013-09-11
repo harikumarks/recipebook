@@ -1,31 +1,40 @@
-<h1>Listing recipes</h1>
+<% provide(:title, "All recipes") %>
+<%= render 'layouts/userheader' %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Quantity</th>
-    <th>User</th>
-    <th>Recipe category</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/userleftnav' %>
+    <div class="span5">
 
-<% @recipes.each do |recipe| %>
-  <tr>
-    <td><%= recipe.name %></td>
-    <td><%= recipe.description %></td>
-    <td><%= recipe.quantity %></td>
-    <td><%= recipe.user_id %></td>
-    <td><%= recipe.recipe_category_id %></td>
-    <td><%= link_to 'Show', recipe %></td>
-    <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-    <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <b> Recipes </b></br>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Serves</th>
+          <th>Time</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @recipes.each do |rp| %>
+            <tr>
+            <td><%=  rp.name  %></tr>
+            <td><%= rp.quantity.to_s %></td>
+            <% preptime=rp.presteps.pluck(:time).sum %>
+            <% steptime=rp.steps.pluck(:time).sum %>
+            <td><%= preptime+steptime %></td>
+            <td><%= rp.recipe_category_id %></td>
+            <td><%= link_to 'Show', rp %></td>
+            <td><%= link_to 'Edit', edit_recipe_path(rp) %></td>
+            <td><%= link_to 'Destroy', rp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
 
-<br />
+      <%= link_to  "Add new", new_recipe_path(:user_id => "#{@user.id}")  %>
 
-<%= link_to 'New Recipe', new_recipe_path %>
+    </div>
+  </div>
+</div>
+

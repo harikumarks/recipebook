@@ -3,6 +3,7 @@ class RecipeCategoriesController < ApplicationController
   # GET /recipe_categories.json
   def index
     @recipe_categories = RecipeCategory.all
+    @user=User.find(params[:user_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,16 +11,6 @@ class RecipeCategoriesController < ApplicationController
     end
   end
 
-  # GET /recipe_categories/1
-  # GET /recipe_categories/1.json
-  def show
-    @recipe_category = RecipeCategory.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @recipe_category }
-    end
-  end
 
   # GET /recipe_categories/new
   # GET /recipe_categories/new.json

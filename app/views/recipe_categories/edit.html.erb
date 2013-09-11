@@ -1,6 +1,14 @@
-<h1>Editing recipe_category</h1>
+<% provide(:title, 'Add Recipe') %>
+<%= render 'layouts/userheader' %>
+<div class="container">
+    <div class="row">
+        <%= render 'layouts/userleftnav' %>
+        <div class="span5">
 
-<%= render 'form' %>
+            <%= render 'form' %>
 
-<%= link_to 'Show', @recipe_category %> |
-<%= link_to 'Back', recipe_categories_path %>
+            <%= link_to 'Show', @recipe_category %> |
+            <%= link_to 'Back', recipe_categories_path %>
+        </div>
+    </div>
+</div>

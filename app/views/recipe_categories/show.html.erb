@@ -1,10 +1,17 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, 'Add Recipe') %>
+<%= render 'layouts/userheader' %>
+<div class="container">
+    <div class="row">
+        <%= render 'layouts/userleftnav' %>
+        <div class="span5">
+            <p>
+              <b>Name:</b>
+              <%= @recipe_category.name %>
+            </p>
 
-<p>
-  <b>Name:</b>
-  <%= @recipe_category.name %>
-</p>
 
-
-<%= link_to 'Edit', edit_recipe_category_path(@recipe_category) %> |
-<%= link_to 'Back', recipe_categories_path %>
+            <%= link_to 'Edit', edit_recipe_category_path(@recipe_category) %> |
+            <%= link_to 'Back', recipe_categories_path %>
+        </div>
+    </div>
+</div>

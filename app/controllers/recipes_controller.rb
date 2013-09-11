@@ -2,7 +2,8 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.where(:user_id => params[:user_id])
+    @user=User.find(params[:user_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +15,10 @@ class RecipesController < ApplicationController
   # GET /recipes/1.json
   def show
     @recipe = Recipe.find(params[:id])
+    @user=User.find(params[:user_id])
+    @presteps=@recipe.presteps
+    @steps=@recipe.steps
+
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +30,7 @@ class RecipesController < ApplicationController
   # GET /recipes/new.json
   def new
     @recipe = Recipe.new
+    @user=User.find(params[:user_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,12 +41,14 @@ class RecipesController < ApplicationController
   # GET /recipes/1/edit
   def edit
     @recipe = Recipe.find(params[:id])
+    @user=User.find(params[:user_id])
   end
 
   # POST /recipes
   # POST /recipes.json
   def create
     @recipe = Recipe.new(params[:recipe])
+    @user=User.find(params[:user_id])
 
     respond_to do |format|
       if @recipe.save
@@ -57,6 +65,7 @@ class RecipesController < ApplicationController
   # PUT /recipes/1.json
   def update
     @recipe = Recipe.find(params[:id])
+    @user=User.find(params[:user_id])
 
     respond_to do |format|
       if @recipe.update_attributes(params[:recipe])

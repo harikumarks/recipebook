@@ -5,13 +5,13 @@ class UsersController < ApplicationController
   def create
     @user=User.new(params[:user])
     if @user.save
-    # TBD add welcome
+    # TBD add welcome flash
     redirect_to @user
     else
       render 'new' 
      end
   end
   def show
-   @user=User.find(params[:id])
+    redirect_to recipes_path(:user_id => params[:id])
   end
 end
