@@ -1,6 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<p>
+<% provide(:title, 'Show Ingredient') %>
+<%= render 'layouts/userheader' %>
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/userleftnav' %>
+    <div class="span5"><p>
   <b>Name:</b>
   <%= @ingredient.name %>
 </p>
@@ -11,11 +14,6 @@
 </p>
 
 <p>
-  <b>Recipe:</b>
-  <%= @ingredient.recipe_id %>
-</p>
-
-<p>
   <b>Ingredient category:</b>
   <%= @ingredient.ingredient_category_id %>
 </p>
@@ -23,3 +21,7 @@
 
 <%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
 <%= link_to 'Back', ingredients_path %>
+
+</div>
+      </div>
+    </div>

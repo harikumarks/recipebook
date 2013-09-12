@@ -1,0 +1,37 @@
+
+<% provide(:title, "Recipe ingredients") %>
+<%= render 'layouts/userheader' %>
+<h1>Editing recipe</h1>
+
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/userleftnav' %>
+    <div class="span5">
+<table>
+  <tr>
+
+    <th>Ingredient</th>
+    <th>Quantity</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @recipe_ingredients.each do |recipe_ingredient| %>
+  <tr>
+
+    <td><%= @ingredients.where(:id => recipe_ingredient.ingredient_id).first.name %></td>
+    <td><%= recipe_ingredient.quantity %></td>
+    <td><%= link_to 'Show', recipe_ingredient %></td>
+    <td><%= link_to 'Edit', edit_recipe_ingredient_path(recipe_ingredient) %></td>
+    <td><%= link_to 'Destroy', recipe_ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Add ingredient', new_recipe_ingredient_path %>
+</div>
+      </div>
+    </div>

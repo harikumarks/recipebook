@@ -1,23 +1,36 @@
-<h1>Listing ingredient_categories</h1>
+<% provide(:title, 'Ingredient categories') %>
+<%= render 'layouts/userheader' %>
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/userleftnav' %>
+    <div class="span5">
+      <b> Ingredient categories</b>
 
-<table>
+      <table class="table table-striped">
+  <thead>
   <tr>
     <th>Name</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
+  </thead>
 
 <% @ingredient_categories.each do |ingredient_category| %>
-  <tr>
+     <tbody>
+      <tr>
     <td><%= ingredient_category.name %></td>
     <td><%= link_to 'Show', ingredient_category %></td>
     <td><%= link_to 'Edit', edit_ingredient_category_path(ingredient_category) %></td>
     <td><%= link_to 'Destroy', ingredient_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
+   </tbody>
 <% end %>
 </table>
 
 <br />
 
 <%= link_to 'New Ingredient category', new_ingredient_category_path %>
+      </div>
+      </div>
+    </div>

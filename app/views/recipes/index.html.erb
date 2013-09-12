@@ -1,3 +1,4 @@
+<%if !params[:nolayout] %>
 <% provide(:title, "All recipes") %>
 <%= render 'layouts/userheader' %>
 
@@ -7,6 +8,8 @@
     <div class="span8">
 
       <b> Recipes </b></br>
+<%end%>
+       <div id="datatable">
       <table class="table table-striped"  >
         <thead>
         <tr>
@@ -33,10 +36,18 @@
         <% end %>
         </tbody>
       </table>
-
+         </div>
+<% if !params[:nolayout] %>
       <%= link_to  "Add new", new_recipe_path  %>
 
+
+      <%if @recipes.count!=0 %>
+         <%= link_to  "Next 10", recipes_path(:start_range => @recipes.last.id , :nolayout => true) , remote:true  %>
+      <%end%>
     </div>
   </div>
 </div>
+
+<%end%>
+
 

@@ -44,7 +44,7 @@ class IngredientCategoriesController < ApplicationController
 
     respond_to do |format|
       if @ingredient_category.save
-        format.html { redirect_to @ingredient_category, notice: 'Ingredient category was successfully created.' }
+        format.html { redirect_to ingredient_categories_path }
         format.json { render json: @ingredient_category, status: :created, location: @ingredient_category }
       else
         format.html { render action: "new" }

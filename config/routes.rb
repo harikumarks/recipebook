@@ -2,6 +2,9 @@ Recipebook::Application.routes.draw do
 
 
 
+  resources :recipe_ingredients
+
+
   devise_for :users
 
   match '/signup' , to: 'users#new'

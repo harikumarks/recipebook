@@ -1,9 +1,18 @@
 class RecipesController < ApplicationController
   before_filter :authenticate_user!
   def index
+    if params[:start_range]
+      @recipes = Recipe.where(:user_id => current_user.id).where("id >  #{params[:start_range]}").limit(2).order('id asc')
+
+    else
     @recipes = Recipe.where(:user_id => current_user.id )
+    end
      respond_to do |format|
-      format.html # index.html.erb
+       if params[:nolayout]
+      format.html { render :template => 'recipes/index' , :layout =>false }
+       else
+            format.html
+         end
       format.json { render json: @recipes }
     end
   end
@@ -81,4 +90,6 @@ class RecipesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 end

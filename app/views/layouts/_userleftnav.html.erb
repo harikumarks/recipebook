@@ -2,7 +2,7 @@
   <div class="well sidebar-nav">
     <ul class="nav nav-list">
       <% current_controller = params[:controller] %>
-      <% controllers= ["recipe_categories","recipes","ingredients"]%>
+      <% controllers= ["recipe_categories","recipes","ingredient_categories","ingredients"]%>
       <% controllers.each do |controller| %>
           <% if current_controller==controller %>
             <li  class="active">

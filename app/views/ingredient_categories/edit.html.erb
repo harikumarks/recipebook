@@ -1,6 +1,15 @@
-<h1>Editing ingredient_category</h1>
 
+<% provide(:title, 'Edit ingredient category') %>
+<%= render 'layouts/userheader' %>
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/userleftnav' %>
+    <div class="span5">
+      <b>Edit ingredient category</b>
 <%= render 'form' %>
 
-<%= link_to 'Show', @ingredient_category %> |
+|
 <%= link_to 'Back', ingredient_categories_path %>
+</div>
+      </div>
+    </div>
