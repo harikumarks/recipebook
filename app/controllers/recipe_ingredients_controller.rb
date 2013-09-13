@@ -45,6 +45,7 @@ class RecipeIngredientsController < ApplicationController
         format.html { redirect_to recipe_path(@recipe_ingredient.recipe_id)}
         format.json { render json: @recipe_ingredient, status: :created, location: @recipe_ingredient }
       else
+        @ingredients= Ingredient.all
         format.html { render action: "new" }
         format.json { render json: @recipe_ingredient.errors, status: :unprocessable_entity }
       end
@@ -61,6 +62,7 @@ class RecipeIngredientsController < ApplicationController
         format.html {  redirect_to  recipe_path(@recipe_ingredient.recipe_id) }
         format.json { head :no_content }
       else
+        @ingredients= Ingredient.all
         format.html { render action: "edit" }
         format.json { render json: @recipe_ingredient.errors, status: :unprocessable_entity }
       end

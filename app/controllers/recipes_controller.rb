@@ -57,6 +57,7 @@ class RecipesController < ApplicationController
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
         format.json { render json: @recipe, status: :created, location: @recipe }
       else
+        @categories=RecipeCategory.all
         format.html { render action: "new" }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
@@ -74,6 +75,7 @@ class RecipesController < ApplicationController
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
         format.json { head :no_content }
       else
+        @categories=RecipeCategory.all
         format.html { render action: "edit" }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end

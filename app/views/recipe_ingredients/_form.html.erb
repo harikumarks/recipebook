@@ -26,4 +26,7 @@
     <div class="actions">
     <%= f.submit tag="Save" %>
   </div>
+    <% if params[:recipe_id]      %>
+    <%= link_to 'Back', recipe_path(params[:recipe_id]) %>
+        <%end%>
 <% end %>

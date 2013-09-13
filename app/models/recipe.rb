@@ -9,5 +9,6 @@ class Recipe < ActiveRecord::Base
   validates :name , presence: true , length: {:maximum => 30}
   validates :recipe_category_id , presence: true
   validates :user_id, presence: true
+  validates :quantity , presence: true, :inclusion => {:in => 1...100}
 
 end
