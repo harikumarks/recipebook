@@ -5,39 +5,8 @@
     <%= render 'layouts/userleftnav' %>
     <div class="span5">
 
-      <%= form_for(@recipe) do |f| %>
-          <% if @recipe.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
-
-                <ul>
-                  <% @recipe.errors.full_messages.each do |msg| %>
-                      <li><%= msg %></li>
-                  <% end %>
-                </ul>
-              </div>
-          <% end %>
-
-          <%= f.label :name %>
-          <%= f.text_field :name %>
-
-          <%= f.label :description %>
-          <%= f.text_field :description %>
-
-          <%= f.label :Serves %>
-          <%= f.number_field :quantity %>
-
-          <% categories=RecipeCategory.all %>
-          <%= f.label :Category %>
-          <%= f.select(:recipe_category_id, categories.map { |value| [ value.name, value.id ] })%>
-
-          <%= f.hidden_field :user_id , :value => current_user.id %>
-
-          <br/>
-
-          <%= f.submit "Create recipe" %>
-      <% end %>
-      <%= link_to 'Back', recipes_path %>
+          <%= render 'form' %>
+        <%= link_to 'Back', recipes_path %>
 
     </div>
   </div>

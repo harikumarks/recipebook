@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :quantity %><br />
-    <%= f.number_field :quantity %>
+    <%= f.hidden_field :recipe_id, :value => params[:recipe_id] %>
+</div>
+ <div class="field">
+    <%= f.label :ingredient %><br />
+    <%= f.select(:ingredient_id, @ingredients.map { |value| [ value.name + " - " + value.unit, value.id] }) %>
   </div>
   <div class="field">
-    <%= f.label :recipe_id %><br />
-    <%= f.number_field :recipe_id %>
+      <%= f.label :quantity %><br />
+      <%= f.number_field :quantity , in: 1...1000 %>
   </div>
-  <div class="field">
-    <%= f.label :ingredient_id %><br />
-    <%= f.number_field :ingredient_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+
+    <div class="actions">
+    <%= f.submit tag="Save" %>
   </div>
 <% end %>

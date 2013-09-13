@@ -1,5 +1,14 @@
-<h1>New prestep</h1>
+<% provide(:title, 'New mise-en-place') %>
+<%= render 'layouts/userheader' %>
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/userleftnav' %>
+    <div class="span5">
+      <b> New mis-en-place</b>
 
-<%= render 'form' %>
+      <%= render 'form' %>
 
-<%= link_to 'Back', presteps_path %>
+<%= link_to 'Back', recipes_path(params[:recipe_id]) %>
+</div>
+      </div>
+    </div>

@@ -2,23 +2,22 @@ class RecipesController < ApplicationController
   before_filter :authenticate_user!
   def index
     if params[:start_range]
-      @recipes = Recipe.where(:user_id => current_user.id).where("id >  #{params[:start_range]}").limit(2).order('id asc')
+      @recipes = Recipe.paginate(page: params[:page]).per_page(2).where(:user_id => current_user.id).where("id >  #{params[:start_range]}").limit(2).order('id asc')
 
     else
-    @recipes = Recipe.where(:user_id => current_user.id )
+    @recipes = Recipe.paginate(page: params[:page]).per_page(2).where(:user_id => current_user.id )
     end
      respond_to do |format|
-       if params[:nolayout]
-      format.html { render :template => 'recipes/index' , :layout =>false }
-       else
-            format.html
-         end
+
+      format.html
       format.json { render json: @recipes }
     end
   end
 
   def show
     @recipe = Recipe.find(params[:id])
+    @recipe_ingredients=  @recipe.recipe_ingredients
+    @ingredients =Ingredient.where(:id => @recipe_ingredients.pluck(:ingredient_id))
     @presteps=@recipe.presteps
     @steps=@recipe.steps
 
@@ -33,6 +32,7 @@ class RecipesController < ApplicationController
   # GET /recipes/new.json
   def new
     @recipe = Recipe.new
+    @categories=RecipeCategory.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,6 +43,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1/edit
   def edit
     @recipe = Recipe.find(params[:id])
+    @categories=RecipeCategory.all
   end
 
   # POST /recipes

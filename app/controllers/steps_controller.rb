@@ -45,7 +45,7 @@ class StepsController < ApplicationController
 
     respond_to do |format|
       if @step.save
-        format.html { redirect_to @step, notice: 'Step was successfully created.' }
+        format.html { redirect_to recipe_path(@step.recipe_id) }
         format.json { render json: @step, status: :created, location: @step }
       else
         format.html { render action: "new" }
@@ -61,7 +61,7 @@ class StepsController < ApplicationController
 
     respond_to do |format|
       if @step.update_attributes(params[:step])
-        format.html { redirect_to @step, notice: 'Step was successfully updated.' }
+        format.html { redirect_to recipe_path(@step.recipe_id)}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

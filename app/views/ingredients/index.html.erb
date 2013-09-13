@@ -6,7 +6,7 @@
     <div class="span5">
       <b>Ingredients</b>
       <table class="table table-striped">
-        <thead></thead>
+        <thead>
         <tr>
           <th>Name</th>
           <th>Unit</th>
@@ -28,9 +28,10 @@
               <td><%= link_to 'Destroy', ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
         <% end %>
-      </table>
-      </tbody>
 
+      </tbody>
+      </table>
+      <%= will_paginate %>
       <br />
 
       <%= link_to 'New Ingredient', new_ingredient_path %>

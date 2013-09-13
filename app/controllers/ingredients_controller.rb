@@ -2,7 +2,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients
   # GET /ingredients.json
   def index
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.paginate(page: params[:page]).per_page(2)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +25,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients/new.json
   def new
     @ingredient = Ingredient.new
+    @ingredient_categories=IngredientCategory.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients/1/edit
   def edit
     @ingredient = Ingredient.find(params[:id])
+    @ingredient_categories=IngredientCategory.all
   end
 
   # POST /ingredients

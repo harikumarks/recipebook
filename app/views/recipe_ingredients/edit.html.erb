@@ -1,6 +1,19 @@
-<h1>Editing recipe_ingredient</h1>
+<% provide(:title, 'Edit Ingredients') %>
+<%= render 'layouts/userheader' %>
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/userleftnav' %>
+    <div class="span5">
+      <b> Edit ingredient</b>
 
-<%= render 'form' %>
+      <%= render 'form' %>
 
-<%= link_to 'Show', @recipe_ingredient %> |
-<%= link_to 'Back', recipe_ingredients_path %>
+      <%= link_to 'Back', recipes_path(params[:recipe_id]) %>
+
+    </div>
+  </div>
+</div>
+
+
+
+

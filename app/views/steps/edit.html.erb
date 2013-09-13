@@ -1,6 +1,14 @@
-<h1>Editing step</h1>
-
+<% provide(:title, 'Edit recipe step') %>
+<%= render 'layouts/userheader' %>
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/userleftnav' %>
+    <div class="span5">
+      <b> Edit recipe step</b>
 <%= render 'form' %>
 
-<%= link_to 'Show', @step %> |
-<%= link_to 'Back', steps_path %>
+<%= link_to 'Back', recipes_path(params[:recipe_id]) %>
+
+ </div>
+      </div>
+    </div>

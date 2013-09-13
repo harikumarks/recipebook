@@ -5,6 +5,8 @@ ruby '1.9.3'
 gem 'rails', '3.2.12'
 gem 'bootstrap-sass', '2.1'
 gem 'devise', '1.5.4'
+gem 'will_paginate', '3.0.4'
+gem 'bootstrap-will_paginate', '0.0.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

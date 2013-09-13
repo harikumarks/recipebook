@@ -2,7 +2,7 @@ class IngredientCategoriesController < ApplicationController
   # GET /ingredient_categories
   # GET /ingredient_categories.json
   def index
-    @ingredient_categories = IngredientCategory.all
+    @ingredient_categories = IngredientCategory.paginate(page: params[:page]).per_page(2)
 
     respond_to do |format|
       format.html # index.html.erb

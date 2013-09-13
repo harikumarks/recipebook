@@ -1,7 +1,7 @@
 class RecipeCategoriesController < ApplicationController
   before_filter :authenticate_user!
   def index
-    @recipe_categories = RecipeCategory.all
+    @recipe_categories = RecipeCategory.paginate(page: params[:page]).per_page(10)
   end
 
   def new

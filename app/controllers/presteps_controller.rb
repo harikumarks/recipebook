@@ -45,7 +45,7 @@ class PrestepsController < ApplicationController
 
     respond_to do |format|
       if @prestep.save
-        format.html { redirect_to @prestep, notice: 'Prestep was successfully created.' }
+        format.html { redirect_to recipe_path(@prestep.recipe_id) }
         format.json { render json: @prestep, status: :created, location: @prestep }
       else
         format.html { render action: "new" }
@@ -61,7 +61,7 @@ class PrestepsController < ApplicationController
 
     respond_to do |format|
       if @prestep.update_attributes(params[:prestep])
-        format.html { redirect_to @prestep, notice: 'Prestep was successfully updated.' }
+        format.html { redirect_to recipe_path(@prestep.recipe_id) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

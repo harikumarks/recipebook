@@ -6,42 +6,58 @@
     <div class="span5">
 
 
+      <p>
+        <b>Name:</b>
+        <%= @recipe.name %>
+      </p>
+
+      <p>
+        <b>Description:</b>
+        <%= @recipe.description %>
+      </p>
+
+      <p>
+        <b>Serves:</b>
+        <%= @recipe.quantity %>
+      </p>
+
+      <p>
+        <b>Recipe category:</b>
+        <%= @recipe.recipe_category_id %>
+      </p>
+
+      <p>
+        <b>Recipe category:</b>
+        <%= @recipe.recipe_category_id %>
+      </p>
+
+
 
         <p>
-          <b>Name:</b>
-          <%= @recipe.name %>
-        </p>
+      <b>Ingredients</b></br>
+      <% @recipe_ingredients.each do |recipe_ingredient| %>
+      <% @ingredient=   @ingredients.where(:id => recipe_ingredient.ingredient_id).first %>
+      <%= @ingredient.name + " , "  %>
+      <%= recipe_ingredient.quantity.to_s + "-" + @ingredient.unit+ " ."%>
+      <%= link_to 'Edit', edit_recipe_ingredient_path(recipe_ingredient,:recipe_id => @recipe.id) %>
+      <%= link_to 'Delete', recipe_ingredient, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </br>
 
-        <p>
-          <b>Description:</b>
-          <%= @recipe.description %>
-        </p>
-
-        <p>
-          <b>Serves:</b>
-          <%= @recipe.quantity %>
-        </p>
-
-        <p>
-          <b>Recipe category:</b>
-          <%= @recipe.recipe_category_id %>
-        </p>
-
-        <p>
-          <b>Recipe category:</b>
-          <%= @recipe.recipe_category_id %>
-        </p>
-
-
-        <p>
-          <b>Ingredients:TBD</b>
+      <%end%>
+          <%= link_to 'Add new', new_recipe_ingredient_path(:recipe_id => "#{@recipe.id}") %>
           </p>
 
 
         <p>
-          <b> Mise en place:</b>     </br>
+          <b> Mise en place:</b>
+          </br>
           <% @presteps.order(:sequence).each do |prestep| %>
-             <%= prestep.activity + "   " + prestep.time.to_s + " minutes" %> </br>
+             <%= prestep.activity + "   " + prestep.time.to_s + " minutes ." %>
+              <%= link_to 'Edit', edit_prestep_path(prestep,:recipe_id => @recipe.id) %>
+              <%= link_to 'Delete', prestep, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+              </br>
+
           <%end %>
           <%= link_to 'Add new', new_prestep_path(:recipe_id => "#{@recipe.id}") %>
         </p>
@@ -49,8 +65,12 @@
 
         <p>
           <b> Steps:</b>
+          </br>
           <% @steps.each do |step| %>
-              <%= step.activity+ "   " + step.time.to_s + " minutes" %>    </br>
+              <%= step.activity+ "   " + step.time.to_s + " minutes ." %>
+              <%= link_to 'Edit', edit_step_path(step,:recipe_id => @recipe.id) %>
+              <%= link_to 'Delete', step, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </br>
           <%end %>
           <%= link_to 'Add new', new_step_path(:recipe_id => "#{@recipe.id}") %>
         </p>
