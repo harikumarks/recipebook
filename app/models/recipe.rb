@@ -6,7 +6,7 @@ class Recipe < ActiveRecord::Base
   has_many :presteps
   has_many :steps
 
-  validates :name , presence: true , length: {:maximum => 30}
+  validates :name , presence: true , length: {:maximum => 30}  , :uniqueness => true
   validates :recipe_category_id , presence: true
   validates :user_id, presence: true
   validates :quantity , presence: true, :inclusion => {:in => 1...100}
