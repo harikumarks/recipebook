@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_filter :authenticate_user!
   def index
     if params[:start_range]
-      @recipes = Recipe.paginate(page: params[:page]).per_page(2).where(:user_id => current_user.id).where("id >  #{params[:start_range]}").limit(2).order('id asc')
+      @recipes = Recipe.paginate(page: params[:page]).per_page(2).where(:user_id => current_user.id).where("id >  #{params[:start_range]}").limit(10).order('id asc')
 
     else
     @recipes = Recipe.paginate(page: params[:page]).per_page(2).where(:user_id => current_user.id )
@@ -16,6 +16,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @category= RecipeCategory.where(:id => @recipe.recipe_category_id)
     @recipe_ingredients=  @recipe.recipe_ingredients
     @ingredients =Ingredient.where(:id => @recipe_ingredients.pluck(:ingredient_id))
     @presteps=@recipe.presteps

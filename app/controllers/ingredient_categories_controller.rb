@@ -2,7 +2,7 @@ class IngredientCategoriesController < ApplicationController
   # GET /ingredient_categories
   # GET /ingredient_categories.json
   def index
-    @ingredient_categories = IngredientCategory.paginate(page: params[:page]).per_page(2)
+    @ingredient_categories = IngredientCategory.paginate(page: params[:page]).per_page(10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -60,7 +60,7 @@ class IngredientCategoriesController < ApplicationController
 
     respond_to do |format|
       if @ingredient_category.update_attributes(params[:ingredient_category])
-        format.html { redirect_to @ingredient_category, notice: 'Ingredient category was successfully updated.' }
+        format.html { redirect_to ingredient_categories_path, notice: 'Ingredient category was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

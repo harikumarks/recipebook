@@ -23,9 +23,9 @@
     <%= f.label :time %><br />
     <%= f.number_field :time , in: 1...3000 %>
   </div>
-    <%= f.hidden_field :recipe_id , :value => params[:recipe_id] %>
+    <%= f.hidden_field :recipe_id , :value => @recipe_id %>
   <div class="actions">
     <%= f.submit tag="Save" %>
   </div>
-   <%= link_to 'Back', recipe_path(params[:recipe_id]) %>
+   <%= link_to 'Back', recipe_path(@recipe_id) %>
 <% end %>

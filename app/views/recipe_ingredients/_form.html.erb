@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.hidden_field :recipe_id, :value => params[:recipe_id] %>
+    <%= f.hidden_field :recipe_id, :value => @recipe_id %>
 </div>
  <div class="field">
     <%= f.label :ingredient %><br />
@@ -26,7 +26,7 @@
     <div class="actions">
     <%= f.submit tag="Save" %>
   </div>
-    <% if params[:recipe_id]      %>
-    <%= link_to 'Back', recipe_path(params[:recipe_id]) %>
-        <%end%>
+
+    <%= link_to 'Back', recipe_path(@recipe_id) %>
+
 <% end %>

@@ -1,5 +1,12 @@
 class PrestepsController < ApplicationController
+  before_filter :init_objects
   before_filter :authenticate_user!
+
+  def init_objects
+    @presteps
+    @recipe_id
+  end
+
   # GET /presteps
   # GET /presteps.json
   def index
@@ -26,6 +33,7 @@ class PrestepsController < ApplicationController
   # GET /presteps/new.json
   def new
     @prestep = Prestep.new
+    @recipe_id = params[:recipe_id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,13 +44,14 @@ class PrestepsController < ApplicationController
   # GET /presteps/1/edit
   def edit
     @prestep = Prestep.find(params[:id])
+    @recipe_id=@prestep.recipe_id
   end
 
   # POST /presteps
   # POST /presteps.json
   def create
     @prestep = Prestep.new(params[:prestep])
-
+    @recipe_id=@prestep.recipe_id
     respond_to do |format|
       if @prestep.save
         format.html { redirect_to recipe_path(@prestep.recipe_id) }
@@ -58,6 +67,7 @@ class PrestepsController < ApplicationController
   # PUT /presteps/1.json
   def update
     @prestep = Prestep.find(params[:id])
+    @recipe_id=@prestep.recipe_id
 
     respond_to do |format|
       if @prestep.update_attributes(params[:prestep])
@@ -77,7 +87,7 @@ class PrestepsController < ApplicationController
     @prestep.destroy
 
     respond_to do |format|
-      format.html { redirect_to presteps_url }
+      format.html { redirect_to recipe_path(@prestep.recipe_id) }
       format.json { head :no_content }
     end
   end

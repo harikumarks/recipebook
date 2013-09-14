@@ -1,15 +1,12 @@
 class StepsController < ApplicationController
+  before_filter :init_objects
   before_filter :authenticate_user!
-  # GET /steps
-  # GET /steps.json
-  def index
-    @steps = Step.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @steps }
-    end
+  def init_objects
+    @steps
+    @recipe_id
   end
+
 
   # GET /steps/1
   # GET /steps/1.json
@@ -26,6 +23,7 @@ class StepsController < ApplicationController
   # GET /steps/new.json
   def new
     @step = Step.new
+    @recipe_id= params[:recipe_id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,12 +34,14 @@ class StepsController < ApplicationController
   # GET /steps/1/edit
   def edit
     @step = Step.find(params[:id])
+    @recipe_id=@step.recipe_id
   end
 
   # POST /steps
   # POST /steps.json
   def create
     @step = Step.new(params[:step])
+    @recipe_id=@step.recipe_id
 
     respond_to do |format|
       if @step.save
@@ -58,7 +58,7 @@ class StepsController < ApplicationController
   # PUT /steps/1.json
   def update
     @step = Step.find(params[:id])
-
+    @recipe_id=@step.recipe_id
     respond_to do |format|
       if @step.update_attributes(params[:step])
         format.html { redirect_to recipe_path(@step.recipe_id)}
@@ -77,7 +77,7 @@ class StepsController < ApplicationController
     @step.destroy
 
     respond_to do |format|
-      format.html { redirect_to steps_url }
+      format.html { redirect_to recipe_path(@step.recipe_id) }
       format.json { head :no_content }
     end
   end

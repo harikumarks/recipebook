@@ -3,7 +3,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients.json
   def index
     @ingredients = Ingredient.paginate(page: params[:page]).per_page(2)
-
+    @ingredient_categories=IngredientCategory.where(:id => @ingredients.pluck(:ingredient_category_id))
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @ingredients }
