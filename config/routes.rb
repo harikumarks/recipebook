@@ -28,6 +28,10 @@ Recipebook::Application.routes.draw do
 
   resources :recipe_categories
 
+  namespace :rest do
+    resource :recipe_categories, :defaults => { :format => 'xml'}
+  end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
