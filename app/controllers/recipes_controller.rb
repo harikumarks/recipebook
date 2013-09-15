@@ -1,15 +1,13 @@
 class RecipesController < ApplicationController
   before_filter :authenticate_user!
-  def index
-    if params[:start_range]
-      @recipes = Recipe.paginate(page: params[:page]).per_page(2).where(:user_id => current_user.id).where("id >  #{params[:start_range]}").limit(10).order('id asc')
 
-    else
-    @recipes = Recipe.paginate(page: params[:page]).per_page(2).where(:user_id => current_user.id )
-    end
+  def index
+
+    @recipes = Recipe.order("name").paginate(page: params[:page]).per_page(2).where(:user_id => current_user.id )
      respond_to do |format|
 
       format.html
+      format.js
       format.json { render json: @recipes }
     end
   end
@@ -88,10 +86,13 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
+    @recipes = Recipe.paginate(page: params[:page]).per_page(2).where(:user_id => current_user.id )
+
 
     respond_to do |format|
       format.html { redirect_to recipes_url }
       format.json { head :no_content }
+      format.js   { render action: "index"  }
     end
   end
 

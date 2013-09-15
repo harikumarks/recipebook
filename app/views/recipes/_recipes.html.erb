@@ -1,0 +1,28 @@
+<div id="recipes">
+<table class="table table-striped"  >
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Serves</th>
+    <th>Time</th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @recipes.each do |rp| %>
+      <tr>
+        <td style="overflow: hidden"><%=  rp.name  %></td>
+        <td><%= rp.quantity.to_s %></td>
+        <% preptime=rp.presteps.pluck(:time).sum %>
+        <% steptime=rp.steps.pluck(:time).sum %>
+        <td><%= preptime+steptime %></td>
+        <td><%= link_to 'View/Edit ', rp %></td>
+        <td><%= link_to image_tag('delete.png'), rp, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate %>
+</div>

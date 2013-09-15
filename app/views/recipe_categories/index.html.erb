@@ -2,27 +2,14 @@
 <%= render 'layouts/userheader' %>
 <div class="container">
     <div class="row">
-        <%= render 'layouts/userleftnav' %>
+
+      <%= render 'layouts/userleftnav' %>
         <div class="span5">
+          <b>Categories</b>
 
-        <table class=table>
-          <thead>
-            <th>Categories</th>
-          </tr>
-
-        <% @recipe_categories.each do |recipe_category| %>
-          <tr>
-            <td><%= recipe_category.name %></td>
-            <td><%= link_to 'Edit', edit_recipe_category_path(recipe_category) %></td>
-            <td><%= link_to 'Destroy', recipe_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-        </table>
-        <%= will_paginate %>
-
+          <%= render 'layouts/recipecategories' %>
         <br />
-        <%= link_to ' New recipe category', new_recipe_category_path %>
-
+           <%= link_to " Add new  #{image_tag('go.png')}".html_safe, new_recipe_category_path %>
         </div>
     </div>
 </div>

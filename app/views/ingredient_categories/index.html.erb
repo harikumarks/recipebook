@@ -20,9 +20,8 @@
 
       <tr>
     <td><%= ingredient_category.name %></td>
-    <td><%= link_to 'Show', ingredient_category %></td>
-    <td><%= link_to 'Edit', edit_ingredient_category_path(ingredient_category) %></td>
-    <td><%= link_to 'Destroy', ingredient_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to image_tag('edit.png'), edit_ingredient_category_path(ingredient_category) %></td>
+    <td><%= link_to image_tag('delete.png'), ingredient_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 
 <% end %>
@@ -31,7 +30,7 @@
       <%= will_paginate %>
 <br />
 
-<%= link_to 'New Ingredient category', new_ingredient_category_path %>
+<%= link_to " Add new  #{image_tag('go.png')}".html_safe, new_ingredient_category_path %>
       </div>
       </div>
     </div>

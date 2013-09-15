@@ -26,9 +26,8 @@
               <% if @catname %>
               <td><%=  @catname.name %></td>
               <%end%>
-              <td><%= link_to 'Show', ingredient %></td>
-              <td><%= link_to 'Edit', edit_ingredient_path(ingredient) %></td>
-              <td><%= link_to 'Destroy', ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to image_tag('edit.png'), edit_ingredient_path(ingredient) %></td>
+              <td><%= link_to image_tag('delete.png'), ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
         <% end %>
 
@@ -37,7 +36,7 @@
       <%= will_paginate %>
       <br />
 
-      <%= link_to 'New Ingredient', new_ingredient_path %>
+      <%= link_to " Add new  #{image_tag('go.png')}".html_safe, new_ingredient_path %>
     </div>
   </div>
 </div>

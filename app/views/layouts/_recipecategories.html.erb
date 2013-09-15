@@ -1,0 +1,16 @@
+<div id="recipecategories" >
+<table class=table>
+  <thead>
+  <th></th>
+  </tr>
+
+  <% @recipe_categories.each do |recipe_category| %>
+      <tr>
+        <td><%= recipe_category.name %></td>
+        <td><%= link_to image_tag('edit.png'), edit_recipe_category_path(recipe_category) %></td>
+        <td><%= link_to image_tag('delete.png'), recipe_category, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
+      </tr>
+  <% end %>
+</table>
+<%= will_paginate %>
+</div>

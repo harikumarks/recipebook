@@ -1,7 +1,8 @@
 class RecipeCategoriesController < ApplicationController
   before_filter :authenticate_user!
+
   def index
-    @recipe_categories = RecipeCategory.paginate(page: params[:page]).per_page(10)
+    @recipe_categories = RecipeCategory.order("name").paginate(page: params[:page]).per_page(10)
   end
 
   def new
@@ -39,9 +40,12 @@ class RecipeCategoriesController < ApplicationController
   def destroy
     @recipe_category = RecipeCategory.find(params[:id])
     @recipe_category.destroy
+    @recipe_categories = RecipeCategory.order("name").paginate(page: params[:page]).per_page(10)
+
 
     respond_to do |format|
       format.html { redirect_to recipe_categories_url }
+      format.js   { render action: "index"  }
     end
   end
 end
