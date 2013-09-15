@@ -1,11 +1,31 @@
 require 'spec_helper'
+include Warden::Test::Helpers
+
 
 describe "Recipes" do
-  describe "GET /recipes" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get recipes_path
-      response.status.should be(200)
+  subject { page }
+  before do
+    Warden.test_mode!
+    user = FactoryGirl.create(:user)
+    login_as(user, :scope => :user)
+    @category= FactoryGirl.create(:recipe_category)
+  end
+  describe "Check recipe added " do
+
+    before do
+      visit recipes_path
+      @name="Dish1"
+      @quantity="59"
+      click_link "Add new"
+      fill_in "Name", :with => @name
+      fill_in "recipe_quantity", :with => @quantity
+      select @category.name , :from => "recipe_recipe_category_id"
+      click_button "Save"
+      print html
+
     end
+    it { should have_content(@name)}
+    it { should have_content(@quantity)}
+
   end
 end

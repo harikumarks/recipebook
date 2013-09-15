@@ -3,12 +3,15 @@ class RecipesController < ApplicationController
 
   def index
 
-    @recipes = Recipe.order("name").paginate(page: params[:page]).per_page(2).where(:user_id => current_user.id )
-     respond_to do |format|
+    @recipes = Recipe.order("name").paginate(page: params[:page]).per_page(10).where(:user_id => current_user.id )
+    @recipe_categories=RecipeCategory.where(:id => @recipes.pluck(:recipe_category_id))
+
+    respond_to do |format|
 
       format.html
       format.js
       format.json { render json: @recipes }
+      format.xml  { render :xml => @recipes}
     end
   end
 
@@ -55,10 +58,14 @@ class RecipesController < ApplicationController
       if @recipe.save
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
         format.json { render json: @recipe, status: :created, location: @recipe }
+        format.xml  { render :xml => @recipes}
+
       else
         @categories=RecipeCategory.all
         format.html { render action: "new" }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
+        format.xml  { render :xml => @recipe.errors}
+
       end
     end
   end
@@ -86,7 +93,6 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
-    @recipes = Recipe.paginate(page: params[:page]).per_page(2).where(:user_id => current_user.id )
 
 
     respond_to do |format|

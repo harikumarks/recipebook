@@ -1,11 +1,25 @@
 require 'spec_helper'
+include Warden::Test::Helpers
 
 describe "IngredientCategories" do
-  describe "GET /ingredient_categories" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get ingredient_categories_path
-      response.status.should be(200)
-    end
+  subject { page }
+  before do
+    Warden.test_mode!
+    user = FactoryGirl.create(:user)
+    login_as(user, :scope => :user)
+
   end
+  describe "Check Ingredient Category added " do
+    # Will use FactoryGirl to create category in recipes spec
+    before do
+      @category="Poultry"
+      visit ingredient_categories_path
+      click_link "Add new"
+      fill_in "Name", :with =>  @category
+      click_button "Save"
+
+    end
+    it { should have_content(@category)}
+  end
+
 end

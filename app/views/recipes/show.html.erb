@@ -25,7 +25,9 @@
 
       <p>
         <b>Recipe category:</b>
+        <% if @category.first %>
         <%= @category.first.name %>
+        <%end%>
       </p>
 
 
@@ -35,13 +37,13 @@
       <% @recipe_ingredients.each do |recipe_ingredient| %>
       <% @ingredient=   @ingredients.where(:id => recipe_ingredient.ingredient_id).first %>
       <%= @ingredient.name + " , "  %>
-      <%= recipe_ingredient.quantity.to_s + "-" + @ingredient.unit+ " ."%>
-      <%= link_to 'Edit', edit_recipe_ingredient_path(recipe_ingredient,:recipe_id => @recipe.id) %>
-      <%= link_to 'Delete', recipe_ingredient, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= recipe_ingredient.quantity.to_s + "-" + @ingredient.unit+ " ."%> ....
+      <%= link_to image_tag("edit.png"), edit_recipe_ingredient_path(recipe_ingredient,:recipe_id => @recipe.id) %>
+      <%= link_to image_tag("delete.png"), recipe_ingredient, method: :delete, data: { confirm: 'Are you sure?' } %>
       </br>
 
       <%end%>
-          <%= link_to 'Add new', new_recipe_ingredient_path(:recipe_id => "#{@recipe.id}") %>
+          <%= link_to "Add new #{image_tag('go.png')}".html_safe, new_recipe_ingredient_path(:recipe_id => "#{@recipe.id}") %>
           </p>
 
 
@@ -49,14 +51,14 @@
           <b> Mise en place:</b>
           </br>
           <% @presteps.order(:sequence).each do |prestep| %>
-             <%= prestep.activity + "   " + prestep.time.to_s + " minutes ." %>
-              <%= link_to 'Edit', edit_prestep_path(prestep,:recipe_id => @recipe.id) %>
-              <%= link_to 'Delete', prestep, method: :delete, data: { confirm: 'Are you sure?' } %>
+             <%= prestep.sequence.to_s + ") "+prestep.activity + ",   " + prestep.time.to_s + " minutes ." %>....
+              <%= link_to image_tag("edit.png"), edit_prestep_path(prestep,:recipe_id => @recipe.id) %>
+              <%= link_to image_tag("delete.png"), prestep, method: :delete, data: { confirm: 'Are you sure?' } %>
 
               </br>
 
           <%end %>
-          <%= link_to 'Add new', new_prestep_path(:recipe_id => "#{@recipe.id}") %>
+          <%= link_to "Add new #{image_tag('go.png')}".html_safe, new_prestep_path(:recipe_id => "#{@recipe.id}") %>
         </p>
 
 
@@ -64,17 +66,17 @@
           <b> Steps:</b>
           </br>
           <% @steps.each do |step| %>
-              <%= step.activity+ "   " + step.time.to_s + " minutes ." %>
-              <%= link_to 'Edit', edit_step_path(step,:recipe_id => @recipe.id) %>
-              <%= link_to 'Delete', step, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= step.sequence.to_s + ") "+step.activity+ "  , " + step.time.to_s + " minutes ." %> ....
+              <%= link_to image_tag("edit.png"), edit_step_path(step,:recipe_id => @recipe.id) %>
+              <%= link_to image_tag("delete.png"), step, method: :delete, data: { confirm: 'Are you sure?' } %>
               </br>
           <%end %>
-          <%= link_to 'Add new', new_step_path(:recipe_id => "#{@recipe.id}") %>
+          <%= link_to "Add new #{image_tag('go.png')}".html_safe, new_step_path(:recipe_id => "#{@recipe.id}") %>
         </p>
 
-
-        <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-        <%= link_to 'Back', recipes_path(:user_id => "#{@recipe.user_id}") %>
+        </br>
+        <%= link_to image_tag("edit.png"), edit_recipe_path(@recipe) %> ....
+        <%= link_to image_tag("back.png"), recipes_path(:user_id => "#{@recipe.user_id}") %>
      </div>
 
   </div>

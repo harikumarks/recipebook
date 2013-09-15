@@ -7,6 +7,11 @@ FactoryGirl.define do
 
   end
 
+ factory :user do
+   email                  "user@example.com"
+   password               "password"
+   password_confirmation  "password"
+ end
 
 factory :recipe do
 

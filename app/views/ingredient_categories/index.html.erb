@@ -6,28 +6,7 @@
     <div class="span5">
       <b> Ingredient categories</b>
 
-      <table class="table table-striped">
-  <thead>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
-        <tbody>
-<% @ingredient_categories.each do |ingredient_category| %>
-
-      <tr>
-    <td><%= ingredient_category.name %></td>
-    <td><%= link_to image_tag('edit.png'), edit_ingredient_category_path(ingredient_category) %></td>
-    <td><%= link_to image_tag('delete.png'), ingredient_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-
-<% end %>
-        </tbody>
-</table>
-      <%= will_paginate %>
+     <%= render 'ingredientcategories' %>
 <br />
 
 <%= link_to " Add new  #{image_tag('go.png')}".html_safe, new_ingredient_category_path %>

@@ -12,18 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :unit %><br />
+    <%= f.label :unit %>
     <%= f.text_field :unit %>
   </div>
   <div class="field">
-    <%= f.label :ingredient_category_id %><br />
+    <%= f.label :ingredient_category_id %>
     <%= f.select(:ingredient_category_id, @ingredient_categories.map { |value| [ value.name, value.id ] })%>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit tag="Save"%>
+    <%= link_to image_tag("back.png"), ingredients_path %>
+
   </div>
 <% end %>

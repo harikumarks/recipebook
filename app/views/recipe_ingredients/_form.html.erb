@@ -25,8 +25,9 @@
 
     <div class="actions">
     <%= f.submit tag="Save" %>
-  </div>
+      <%= link_to image_tag("back.png"), recipe_path(@recipe_id) %>
 
-    <%= link_to 'Back', recipe_path(@recipe_id) %>
+    </div>
+
 
 <% end %>

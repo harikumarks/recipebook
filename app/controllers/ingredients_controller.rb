@@ -2,10 +2,11 @@ class IngredientsController < ApplicationController
   # GET /ingredients
   # GET /ingredients.json
   def index
-    @ingredients = Ingredient.paginate(page: params[:page]).per_page(2)
+    @ingredients = Ingredient.order("name").paginate(page: params[:page]).per_page(10)
     @ingredient_categories=IngredientCategory.where(:id => @ingredients.pluck(:ingredient_category_id))
     respond_to do |format|
       format.html # index.html.erb
+      format.js
       format.json { render json: @ingredients }
     end
   end
@@ -46,7 +47,7 @@ class IngredientsController < ApplicationController
 
     respond_to do |format|
       if @ingredient.save
-        format.html { redirect_to @ingredient, notice: 'Ingredient was successfully created.' }
+        format.html { redirect_to ingredients_path }
         format.json { render json: @ingredient, status: :created, location: @ingredient }
       else
         format.html { render action: "new" }
@@ -62,7 +63,7 @@ class IngredientsController < ApplicationController
 
     respond_to do |format|
       if @ingredient.update_attributes(params[:ingredient])
-        format.html { redirect_to @ingredient, notice: 'Ingredient was successfully updated.' }
+        format.html { redirect_to ingredients_path }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

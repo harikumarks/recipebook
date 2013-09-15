@@ -12,11 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit tag="Save"%>
+
+    <%= link_to image_tag("back.png"), recipe_categories_path %>
+
   </div>
-    <%= link_to 'Back', recipe_categories_path %>
 <% end %>

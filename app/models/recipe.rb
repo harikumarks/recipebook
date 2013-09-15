@@ -2,9 +2,9 @@ class Recipe < ActiveRecord::Base
   attr_accessible :description, :name, :quantity, :recipe_category_id, :user_id
   belongs_to :user
   belongs_to :recipe_category
-  has_many :recipe_ingredients
-  has_many :presteps
-  has_many :steps
+  has_many :recipe_ingredients ,dependent: :destroy, validate: :true
+  has_many :presteps ,dependent: :destroy, validate: :true
+  has_many :steps,dependent: :destroy, validate: :true
 
   validates :name , presence: true , length: {:maximum => 30}  , :uniqueness => true
   validates :recipe_category_id , presence: true

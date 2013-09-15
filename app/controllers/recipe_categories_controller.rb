@@ -40,7 +40,6 @@ class RecipeCategoriesController < ApplicationController
   def destroy
     @recipe_category = RecipeCategory.find(params[:id])
     @recipe_category.destroy
-    @recipe_categories = RecipeCategory.order("name").paginate(page: params[:page]).per_page(10)
 
 
     respond_to do |format|
