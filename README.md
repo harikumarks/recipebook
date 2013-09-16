@@ -1,14 +1,6 @@
 -- A recipe book app--
-
-# Completed
-- Initial models using scaffold and migration and tests for them
-- Signup page
-- Trial pages for recipe add
-
-# To be done along with tests
-- Relationships to be completed for all models
-- Relationships to be updated in database via migration
-- Views for category,ingredients,steps
-- Correct layout as per screens
-- Signin page
-
+######################
+1.  Currently working only for single user mode.  To be fixed to work in multi user mode so that users dont delete each others ingredients and categories
+2. The rest api available is only for recipe categories . url  /rest/recipe_categories  and is currenty unauthenticated
+3. Tables with pagination uses ajax to refresh tables
+4. Model relationships are defined in model ( active:record) and not done at the db level
