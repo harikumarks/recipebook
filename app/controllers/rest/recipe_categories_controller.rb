@@ -45,7 +45,7 @@ class Rest::RecipeCategoriesController < ApplicationController
 
     respond_to do |format|
       if @recipe_category.destroy
-        format.xml {  head :non_content,  status: :ok}
+        format.xml {  render xml: @recipe_category,  status: :ok}
       else
         format.html { render xml: @recipe_category.errors, status: :unprocessable_entity }
       end
