@@ -5,12 +5,12 @@
       <% controllers= ["recipe_categories","recipes","ingredient_categories","ingredients"]%>
       <% controllers.each do |controller| %>
           <% if current_controller==controller %>
-            <li  class="active">
-            <% else %>
+              <li  class="active">
+          <% else %>
               <li>
-           <%end%>
+          <%end%>
 
-            <%= link_to controller.humanize, { :controller => controller } %>
+          <%= link_to controller.humanize, { :controller => controller } %>
           </li>
       <% end %>
 

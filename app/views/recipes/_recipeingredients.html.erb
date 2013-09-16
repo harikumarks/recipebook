@@ -1,38 +1,26 @@
 <div id="recipeingredients">
-  <% if @recipeingredients.count > 0 %>
-<table class="table table-striped"  >
-  <thead>
+  <% if @recipe_ingredients.count > 0 %>
+      <table class="table table-striped"  >
+        <thead>
 
-  <tr>
-    <th>Name</th>
-    <th>Serves</th>
-    <th>Time</th>
-    <th>Category</th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @recipes.each do |rp| %>
-      <tr>
-        <td style="overflow: hidden"><%=  rp.name  %></td>
-        <td><%= rp.quantity.to_s %></td>
-        <% preptime=rp.presteps.pluck(:time).sum %>
-        <% steptime=rp.steps.pluck(:time).sum %>
-        <td><%= preptime+steptime %></td>
-        <% @catname=@recipe_categories.where(id: rp.recipe_category_id).first%>
-        <% if @catname %>
-            <td><%=  @catname.name %></td>
-        <%end%>
-
-        <td><%= %></td>
-        <td><%= link_to 'View/Edit ', rp %></td>
-        <td><%= link_to image_tag('delete.png'), rp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
-      <%end%>
-
-<%= will_paginate %>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @recipe_ingredients.each do |recipe_ingredient| %>
+            <tr>
+              <% @ingredient=   @ingredients.where(:id => recipe_ingredient.ingredient_id).first %>
+              <td><%= @ingredient.name  %>    </td>
+              <td><%= recipe_ingredient.quantity.to_s + "-" + @ingredient.unit%> </td>
+              <td><%= link_to image_tag("edit.png"), edit_recipe_ingredient_path(recipe_ingredient,:recipe_id => @recipe.id) %>  </td>
+              <td><%= link_to image_tag("delete.png"), recipe_ingredient, method: :delete, data: { confirm: 'Are you sure?' } %>  </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+  <%end%>
 </div>

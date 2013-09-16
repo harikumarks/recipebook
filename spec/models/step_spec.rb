@@ -3,29 +3,29 @@ require 'spec_helper'
 describe Step do
 
   before do
-    @step = FactoryGirl.build(:step)
+    @rstep = FactoryGirl.create(:step)
 
   end
 
   subject do
-    @step
+    @rstep
   end
   it { should be_valid}
 
   describe "should not be valid if sequence is blank" do
-    before {@step.sequence=""  }
+    before {@rstep.sequence=""  }
     it { should_not be_valid}
 
   end
 
   describe "should not be valid if activity is blank" do
-    before {@step.activity=""  }
+    before {@rstep.activity=""  }
     it { should_not be_valid}
 
   end
 
   describe "should not be valid if time is blank" do
-    before {@step.time=""  }
+    before {@rstep.time=""  }
     it { should_not be_valid}
 
   end

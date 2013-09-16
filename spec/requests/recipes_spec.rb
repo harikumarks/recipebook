@@ -21,7 +21,6 @@ describe "Recipes" do
       fill_in "recipe_quantity", :with => @quantity
       select @category.name , :from => "recipe_recipe_category_id"
       click_button "Save"
-      print html
 
     end
     it { should have_content(@name)}

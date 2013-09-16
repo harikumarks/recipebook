@@ -4,24 +4,24 @@
   <div class="row columns">
     <%= render 'layouts/userleftnav' %>
     <div class="span9 rightcontent"><p>
-  <b>Name:</b>
-  <%= @ingredient.name %>
-</p>
+      <b>Name:</b>
+      <%= @ingredient.name %>
+    </p>
 
-<p>
-  <b>Unit:</b>
-  <%= @ingredient.unit %>
-</p>
+      <p>
+        <b>Unit:</b>
+        <%= @ingredient.unit %>
+      </p>
 
-<p>
-  <b>Ingredient category:</b>
-  <%= @ingredient.ingredient_category_id %>
-</p>
+      <p>
+        <b>Ingredient category:</b>
+        <%= @ingredient.ingredient_category_id %>
+      </p>
 
 
-<%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
-<%= link_to 'Back', ingredients_path %>
+      <%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
+      <%= link_to 'Back', ingredients_path %>
 
-</div>
-      </div>
     </div>
+  </div>
+</div>

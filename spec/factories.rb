@@ -41,19 +41,19 @@ factory :recipe_ingredient do
 end
 
 factory :prestep do
-    sequence 2
+  add_attribute :sequence, 2
     activity "task1"
     time 5
     recipe
 
 end
 
-  factory :step do
-    sequence 2
-    activity "task1"
-    time 5
-    recipe
-  end
+factory :step do
+  add_attribute :sequence, 2
+  time 5
+  activity "task1"
+  recipe
+end
 
 
 end

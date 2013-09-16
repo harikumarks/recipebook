@@ -1,16 +1,16 @@
 <% provide(:title, 'Categories') %>
 <%= render 'layouts/userheader' %>
 <div class="container">
-    <div class="row columns">
+  <div class="row columns">
 
 
-      <%= render 'layouts/userleftnav' %>
-        <div class="span9 rightcontent">
-          <b>Categories</b>
+    <%= render 'layouts/userleftnav' %>
+    <div class="span9 rightcontent">
+      <b>Categories</b>
 
-          <%= render 'recipecategories' %>
-        <br />
-           <%= link_to " Add new  #{image_tag('go.png')}".html_safe, new_recipe_category_path %>
-        </div>
+      <%= render 'recipecategories' %>
+      <br />
+      <%= link_to " Add new  #{image_tag('go.png')}".html_safe, new_recipe_category_path %>
     </div>
+  </div>
 </div>

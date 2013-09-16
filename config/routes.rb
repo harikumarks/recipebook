@@ -8,7 +8,6 @@ Recipebook::Application.routes.draw do
   devise_for :users
 
   match '/signup' , to: 'users#new'
-  match '/allrecipes' , to: 'static_pages#allrecipes'
   #match '/' , to: 'static_pages#home'
 
   resources :ingredients
@@ -82,7 +81,7 @@ Recipebook::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'recipes#index'
+  root :to => 'recipe_categories#index'
 
   # See how all your routes lay out with "rake routes"
 

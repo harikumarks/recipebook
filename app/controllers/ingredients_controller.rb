@@ -1,4 +1,6 @@
 class IngredientsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /ingredients
   # GET /ingredients.json
   def index
@@ -50,6 +52,7 @@ class IngredientsController < ApplicationController
         format.html { redirect_to ingredients_path }
         format.json { render json: @ingredient, status: :created, location: @ingredient }
       else
+        @ingredient_categories=IngredientCategory.all
         format.html { render action: "new" }
         format.json { render json: @ingredient.errors, status: :unprocessable_entity }
       end
@@ -66,6 +69,7 @@ class IngredientsController < ApplicationController
         format.html { redirect_to ingredients_path }
         format.json { head :no_content }
       else
+        @ingredient_categories=IngredientCategory.all
         format.html { render action: "edit" }
         format.json { render json: @ingredient.errors, status: :unprocessable_entity }
       end

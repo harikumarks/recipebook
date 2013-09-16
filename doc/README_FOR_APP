@@ -1,2 +1,7 @@
 Use this README file to introduce your application and point to useful places in the API for learning more.
 Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+######README########
+-This app is used to create recipes and store them online
+-There is one REST API  available which is used to create  recipe categories ( currently it is unauthenticated) and available in /rest/recipe_categories
+- All tables using pagination uses ajax to navigate between pages
+
