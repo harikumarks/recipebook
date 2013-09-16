@@ -6,10 +6,30 @@ html {
   overflow-y: scroll;
 }
 
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
+html, body {
+  height: 90%;
 }
+
+.container {
+    height: 100%;
+ }
+
+.columns {
+  background-color: #F2F2F2;
+  height: 100%;
+}
+
+.rightcontent{
+  overflow:auto;
+  height: 100%;
+
+}
+.leftcontent{
+  background-color: #F2F2F2;
+  height: 100%;
+  overflow:auto;
+}
+
 .nav li {
   padding-top: 5px;
 }
